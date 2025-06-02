@@ -1,0 +1,19 @@
+[package]
+name = "sceii_nft"
+version = "1.0.0"
+authors = ["Sceiiya <aptosdev.manmade677@passinbox.com>"]
+
+[addresses]
+nft_launch_addr = "0x3c7f3d73782bc44477a7c21e166a3c1714da72dc0e7eda23d95068c33886f4ac"
+
+[dev-addresses]
+
+# [dependencies.AptosFramework]
+# git = "https://github.com/aptos-labs/aptos-framework.git"
+# rev = "mainnet"
+# subdir = "aptos-framework"
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-framework.git", rev = "mainnet", subdir = "aptos-framework" }
+AptosTokenObjects = { git = "https://github.com/aptos-labs/aptos-framework.git", rev = "mainnet", subdir = "aptos-token-objects" }
+
+[dev-dependencies]
