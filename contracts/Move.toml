@@ -4,7 +4,7 @@ version = "1.0.0"
 authors = ["Sceiiya <aptosdev.manmade677@passinbox.com>"]
 
 [addresses]
-nft_launch_addr = "0x3c7f3d73782bc44477a7c21e166a3c1714da72dc0e7eda23d95068c33886f4ac"
+inPromptMove_addr = "0x3c7f3d73782bc44477a7c21e166a3c1714da72dc0e7eda23d95068c33886f4ac"
 
 [dev-addresses]
 
