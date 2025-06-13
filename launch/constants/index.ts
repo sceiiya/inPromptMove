@@ -1,7 +1,12 @@
 // export const NETWORK = import.meta.env.VITE_APP_NETWORK ?? "testnet";
-export const NETWORK = process.env.NEXT_PUBLIC_NETWORK ?? "testnet";
+
+import { Network } from "@aptos-labs/ts-sdk";
+
+// export const NETWORK = process.env.NEXT_PUBLIC_NETWORK ?? "testnet";
+export const NETWORK = Network.TESTNET;
 // export const MODULE_ADDRESS = process.env.NEXT_PUBLIC_MODULE_ADDRESS;
-export const MODULE_ADDRESS = "0x3c7f3d73782bc44477a7c21e166a3c1714da72dc0e7eda23d95068c33886f4ac::sceii_nft"
+export const MODULE_ADDRESS = "0x3c7f3d73782bc44477a7c21e166a3c1714da72dc0e7eda23d95068c33886f4ac";
+export const MODULE_NAME = "inPromptMove002";
 export const CREATOR_ADDRESS = process.env.NEXT_PUBLIC_COLLECTION_CREATOR_ADDRESS;
 export const COLLECTION_ADDRESS = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS;
 export const IS_DEV = Boolean(process.env.NEXT_PUBLIC_DEV);
