@@ -9,15 +9,19 @@ const aptos = new Aptos(config);
 export async function getAllGigs(): Promise<Gig[]> {
   try {
     // Fetch all GigCreatedEvent events
+    // const events = await aptos.getModuleEventsByEventType({
     const events = await aptos.getModuleEventsByEventType({
-      eventType: `${MODULE_ADDRESS}::${MODULE_NAME}::gig_store::gig_created_events`,
+      eventType:
+        `0x3c7f3d73782bc44477a7c21e166a3c1714da72dc0e7eda23d95068c33886f4ac::inPromptMove002::GigCreatedEvent`,
     });
 
     // Log events for debugging
     console.log("GigCreatedEvents:", events);
 
     // Extract unique poster addresses
-    const posterAddresses = [...new Set(events.map((event: any) => event.data.poster))];
+    const posterAddresses = [
+      ...new Set(events.map((event: any) => event.data.poster)),
+    ];
 
     // Log poster addresses
     console.log("Poster Addresses:", posterAddresses);
@@ -28,7 +32,9 @@ export async function getAllGigs(): Promise<Gig[]> {
       try {
         const count = await getGigCount(posterAddr);
         console.log(`Gig count for ${posterAddr}: ${count}`);
-        const gigPromises = Array.from({ length: count }, (_, i) => getGig(posterAddr, i));
+        const gigPromises = Array.from({ length: count }, (_, i) =>
+          getGig(posterAddr, i),
+        );
         const gigs = await Promise.all(gigPromises);
         // Filter out null gigs and add valid ones
         gigs.forEach((gig) => {
