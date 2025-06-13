@@ -17,7 +17,7 @@ export default function AddToWhitelist() {
     const response = await signAndSubmitTransaction({
       sender: account.address,
       data: {
-        function: `${MODULE_ADDRESS}::add_self_to_whitelist`,
+        function: `${MODULE_ADDRESS}::sceii_nft::add_self_to_whitelist`,
         functionArguments: [],
       },
     });
