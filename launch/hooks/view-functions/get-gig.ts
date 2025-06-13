@@ -23,9 +23,22 @@ export interface Gig {
   gigId: number; // Add gigId for tracking
 }
 
-export async function getGig(posterAddr: string, gigId: number): Promise<Gig | null> {
+// export async function getGig(posterAddr: string, gigId: number): Promise<Gig | null> {
+export async function getGig(
+  posterAddr: string,
+  gigId: number,
+): Promise<any | null> {
   try {
-    const [title, description, bounty, start_time, end_time, poster, is_active, submissions] = await aptos.view({
+    const [
+      title,
+      description,
+      bounty,
+      start_time,
+      end_time,
+      poster,
+      is_active,
+      submissions,
+    ] = await aptos.view({
       payload: {
         function: `${MODULE_ADDRESS}::${MODULE_NAME}::get_gig`,
         functionArguments: [posterAddr, gigId],
@@ -40,16 +53,21 @@ export async function getGig(posterAddr: string, gigId: number): Promise<Gig | n
       end_time: Number(end_time),
       poster,
       is_active,
-      submissions: submissions.map((s: any) => ({
-        id: Number(s.id),
-        submitter: s.submitter,
-        work_link: s.work_link,
-        submission_time: Number(s.submission_time),
-      })),
+      submissions: Array.isArray(submissions)
+        ? submissions.map((s: any) => ({
+            id: Number(s.id),
+            submitter: s.submitter,
+            work_link: s.work_link,
+            submission_time: Number(s.submission_time),
+          }))
+        : [],
       gigId,
     };
   } catch (error: any) {
-    if (error.message?.includes("E_NOT_INITIALIZED") || error.message?.includes("ABORTED")) {
+    if (
+      error.message?.includes("E_NOT_INITIALIZED") ||
+      error.message?.includes("ABORTED")
+    ) {
       return null; // Account not initialized or gig not found
     }
     console.error(`Failed to get gig ${gigId} for ${posterAddr}:`, error);
